@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map [
+<!ENTITY datasource-settings SYSTEM "inc/datasource-settings.xml.inc">
+]>
+
+<Map srs="+init=epsg:3857" bgcolor="transparent">
+
+<Style name="maxspeed">
+  <Rule>
+    <Filter>[maxspeed] &lt; 50</Filter>
+    <LineSymbolizer stroke="#00ff00" stroke-width="6" stroke-opacity="0.5"/>
+  </Rule>
+  <Rule>
+    <Filter>[maxspeed] = 50</Filter>
+    <LineSymbolizer stroke="#ffa500" stroke-width="6" stroke-opacity="0.5"/>
+  </Rule>
+  <Rule>
+    <Filter>[maxspeed] &gt; 50 and [maxspeed] &lt;= 70</Filter>
+    <LineSymbolizer stroke="#ff0000" stroke-width="6" stroke-opacity="0.5"/>
+  </Rule>
+  <Rule>
+    <Filter>[maxspeed] &gt; 70 and [maxspeed] &lt;= 90</Filter>
+    <LineSymbolizer stroke="#ff00ff" stroke-width="6" stroke-opacity="0.5"/>
+  </Rule>
+  <Rule>
+    <Filter>[maxspeed] &gt; 90 and [maxspeed] &lt;= 110</Filter>
+    <LineSymbolizer stroke="#7f7fff" stroke-width="6" stroke-opacity="0.5"/>
+  </Rule>
+  <Rule>
+    <Filter>[maxspeed] &gt; 110 and [maxspeed] &lt;= 120</Filter>
+    <LineSymbolizer stroke="#0000ff" stroke-width="6" stroke-opacity="0.5"/>
+  </Rule>
+  <Rule>
+    <Filter>[maxspeed] &gt; 120 and [maxspeed] &lt;= 140</Filter>
+    <LineSymbolizer stroke="#bfbfff" stroke-width="6" stroke-opacity="0.5"/>
+  </Rule>
+</Style>
+
+<Layer name="maxspeed" status="on"  srs="+init=epsg:3857">
+  <StyleName>maxspeed</StyleName>
+  <Datasource>
+    <Parameter name="table">
+      (SELECT way,
+              CAST(tags->'maxspeed' AS INTEGER) AS maxspeed
+         FROM planet_osm_line
+        WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified')
+          AND tags->'maxspeed' ~ E'^\\d+$'
+      ) AS way
+    </Parameter>
+    <Parameter name="geometry_field">way</Parameter>
+    &datasource-settings;
+  </Datasource>
+</Layer>
+
+</Map>
