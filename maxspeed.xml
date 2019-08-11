@@ -7,7 +7,11 @@
 
 <Style name="maxspeed">
   <Rule>
-    <Filter>[maxspeed] &lt; 50</Filter>
+    <Filter>[maxspeed] &lt; 30 or [highway] = 'living_street'</Filter>
+    <LineSymbolizer stroke="#7fff7f" stroke-width="3" stroke-opacity="0.5"/>
+  </Rule>
+  <Rule>
+    <Filter>[maxspeed] &gt;= 30 and [maxspeed] &lt; 50</Filter>
     <LineSymbolizer stroke="#00ff00" stroke-width="6" stroke-opacity="0.5"/>
   </Rule>
   <Rule>
@@ -34,6 +38,10 @@
     <Filter>[maxspeed] &gt; 120 and [maxspeed] &lt;= 140</Filter>
     <LineSymbolizer stroke="#bfbfff" stroke-width="6" stroke-opacity="0.5"/>
   </Rule>
+  <Rule>
+    <ElseFilter/>
+    <LineSymbolizer stroke="#7f7f7f" stroke-width="3" stroke-opacity="0.5"/>
+  </Rule>
 </Style>
 
 <Layer name="maxspeed" status="on"  srs="+init=epsg:3857">
@@ -41,10 +49,11 @@
   <Datasource>
     <Parameter name="table">
       (SELECT way,
+              highway,
               CAST(tags->'maxspeed' AS INTEGER) AS maxspeed
          FROM planet_osm_line
-        WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified')
-          AND tags->'maxspeed' ~ E'^\\d+$'
+        WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'living_street')
+          AND ( tags->'maxspeed' ~ E'^\\d+$' OR tags->'maxspeed' IS NULL)
       ) AS way
     </Parameter>
     <Parameter name="geometry_field">way</Parameter>
