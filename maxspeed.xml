@@ -3,7 +3,7 @@
 <!ENTITY datasource-settings SYSTEM "inc/datasource-settings.xml.inc">
 ]>
 
-<Map srs="+init=epsg:3857" bgcolor="transparent">
+<Map srs="epsg:3857" bgcolor="transparent">
 
 <Style name="maxspeed">
   <Rule>
@@ -44,7 +44,7 @@
   </Rule>
 </Style>
 
-<Layer name="maxspeed" status="on"  srs="+init=epsg:3857">
+<Layer name="maxspeed" status="on"  srs="epsg:3857">
   <StyleName>maxspeed</StyleName>
   <Datasource>
     <Parameter name="table">
