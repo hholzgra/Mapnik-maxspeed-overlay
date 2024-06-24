@@ -35,7 +35,7 @@
     <LineSymbolizer stroke="#0000ff" stroke-width="6" stroke-opacity="0.5"/>
   </Rule>
   <Rule>
-    <Filter>[maxspeed] &gt; 120 and [maxspeed] &lt;= 140</Filter>
+    <Filter>[maxspeed] &gt; 120</Filter>
     <LineSymbolizer stroke="#bfbfff" stroke-width="6" stroke-opacity="0.5"/>
   </Rule>
   <Rule>
