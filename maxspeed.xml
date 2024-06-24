@@ -8,39 +8,39 @@
 <Style name="maxspeed">
   <Rule>
     <Filter>[maxspeed] &lt; 30</Filter>
-    <LineSymbolizer stroke="#7fff7f" stroke-width="3" stroke-opacity="0.5"/>
+    <LineSymbolizer stroke="lightgreen" stroke-width="3" stroke-opacity="0.5"/>
   </Rule>
   <Rule>
     <Filter>[maxspeed] &gt;= 30 and [maxspeed] &lt; 50</Filter>
-    <LineSymbolizer stroke="#00ff00" stroke-width="6" stroke-opacity="0.5"/>
+    <LineSymbolizer stroke="green" stroke-width="6" stroke-opacity="0.5"/>
   </Rule>
   <Rule>
     <Filter>[maxspeed] = 50</Filter>
-    <LineSymbolizer stroke="#ffa500" stroke-width="6" stroke-opacity="0.5"/>
+    <LineSymbolizer stroke="orange" stroke-width="6" stroke-opacity="0.5"/>
   </Rule>
   <Rule>
     <Filter>[maxspeed] &gt; 50 and [maxspeed] &lt;= 70</Filter>
-    <LineSymbolizer stroke="#ff0000" stroke-width="6" stroke-opacity="0.5"/>
+    <LineSymbolizer stroke="red" stroke-width="6" stroke-opacity="0.5"/>
   </Rule>
   <Rule>
     <Filter>[maxspeed] &gt; 70 and [maxspeed] &lt;= 90</Filter>
-    <LineSymbolizer stroke="#ff00ff" stroke-width="6" stroke-opacity="0.5"/>
+    <LineSymbolizer stroke="violet" stroke-width="6" stroke-opacity="0.5"/>
   </Rule>
   <Rule>
     <Filter>[maxspeed] &gt; 90 and [maxspeed] &lt;= 110</Filter>
-    <LineSymbolizer stroke="#7f7fff" stroke-width="6" stroke-opacity="0.5"/>
+    <LineSymbolizer stroke="lightblue" stroke-width="6" stroke-opacity="0.5"/>
   </Rule>
   <Rule>
-    <Filter>[maxspeed] &gt; 110 and [maxspeed] &lt;= 120</Filter>
-    <LineSymbolizer stroke="#0000ff" stroke-width="6" stroke-opacity="0.5"/>
+    <Filter>[maxspeed] &gt; 110 and [maxspeed] &lt;= 130</Filter>
+    <LineSymbolizer stroke="blue" stroke-width="6" stroke-opacity="0.5"/>
   </Rule>
   <Rule>
-    <Filter>[maxspeed] &gt; 120</Filter>
-    <LineSymbolizer stroke="#bfbfff" stroke-width="6" stroke-opacity="0.5"/>
+    <Filter>[maxspeed] &gt; 130</Filter>
+    <LineSymbolizer stroke="black" stroke-width="6" stroke-opacity="0.5"/>
   </Rule>
   <Rule>
     <ElseFilter/>
-    <LineSymbolizer stroke="#7f7f7f" stroke-width="3" stroke-opacity="0.5"/>
+    <LineSymbolizer stroke="gray" stroke-width="3" stroke-opacity="0.5"/>
   </Rule>
 </Style>
 
