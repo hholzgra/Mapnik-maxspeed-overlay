@@ -7,7 +7,7 @@
 
 <Style name="maxspeed">
   <Rule>
-    <Filter>[maxspeed] &lt; 30 or [highway] = 'living_street'</Filter>
+    <Filter>[maxspeed] &lt; 30</Filter>
     <LineSymbolizer stroke="#7fff7f" stroke-width="3" stroke-opacity="0.5"/>
   </Rule>
   <Rule>
@@ -66,7 +66,15 @@
 	      END as maxspeed
          FROM planet_osm_line
         WHERE highway IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'living_street')
-          AND ( tags->'maxspeed' IS NULL AND tags->'maxspeed:type' IN ('DE:zone20', 'DE:zone30', 'DE:urban', 'DE:rural', 'DE:motorway'))
+	  AND ( tags->'maxspeed' IS NULL AND tags->'maxspeed:type' IN ('DE:zone20', 'DE:zone30', 'DE:urban', 'DE:rural', 'DE:motorway'))
+       UNION
+       SELECT way,
+	      highway,
+	      5 as maxspeed
+	 FROM planet_osm_line
+	WHERE highway = 'living_street'
+          AND tags->'maxspeed' IS NULL
+          AND tags->'maxspeed:type' IS NULL
       ) AS way
     </Parameter>
     <Parameter name="geometry_field">way</Parameter>
